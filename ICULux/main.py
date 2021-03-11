@@ -3,7 +3,6 @@ import os
 import string
 from logging import Logger
 
-import dbutils as dbutils
 from pandas._typing import Level
 from pyspark.sql.functions import col
 from pyspark.shell import spark
@@ -15,7 +14,7 @@ from pyspark.sql import HiveContext
 import pyspark.sql.functions as sqf
 
 
-spark = SparkSession.builder.master('local[*]').appName('venv').config("spark.files.overwrite", "true")\
+spark = SparkSession.builder.master('local[*]').appName('ICULux').config("spark.files.overwrite", "true")\
     .config("spark.worker.cleanup.enabled","true").getOrCreate()
 sc = spark.sparkContext
 url = "https://physionet.org/files/mimicdb/1.0.0/055/05500001.txt"
@@ -43,15 +42,10 @@ schema = StructType([
 
 readfrmfile = spark.read.csv("temp.txt", header="false", schema=schema, sep='\\t').cache()
 
-readfrmfile = readfrmfile.filter(col('val1').isNotNull())
+readfrmfile = readfrmfile.filter(col("val1").endswith(".txt") == False)
 readfrmfile.show()
 
-rows = readfrmfile.select('Name').distinct().collect()
-rowarray = [str(row.Name) for row in rows]
 
-dfArray = [readfrmfile.where(readfrmfile.Name == i) for i in rowarray]
-
-pandasdf = dfArray.toPandas()
 os.remove("temp.txt")
 
 
