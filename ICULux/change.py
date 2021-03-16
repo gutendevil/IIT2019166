@@ -192,6 +192,6 @@ def find_current_nature(name, val1, val2=0, val3=0):
 
 
 
-    if(flag == True)
+    if(flag == True):
         message += "Patient needs urgent care and medication."
 

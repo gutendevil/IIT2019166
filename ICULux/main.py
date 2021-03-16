@@ -40,9 +40,9 @@ schema = StructType([
     StructField("val3", StringType(), True)])
 
 
-readfrmfile = spark.read.csv("temp.txt", header="false", schema=schema, sep='\\t').cache()
+readfrmfile = spark.read.csv("temp.txt", header="false", schema=schema, sep='\\t')
 
-readfrmfile = readfrmfile.filter(col("val1").endswith(".txt") == False)
+readfrmfile = readfrmfile.filter(col('Name').startswith('[') == False)
 readfrmfile.show()
 
 
