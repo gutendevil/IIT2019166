@@ -1,4 +1,4 @@
-message = ""
+
 flag = False
 state = 0
 def int_or_float(s):
@@ -9,7 +9,7 @@ def int_or_float(s):
 
 
 def find_current_nature(name, val1, val2=0, val3=0):
-
+    message = ""
     if(name == "RESP"):
         if(val1 != '0' and val1[0] != '['):
             if(int_or_float(val1) < 12):
