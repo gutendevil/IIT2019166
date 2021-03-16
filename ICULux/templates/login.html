@@ -1,0 +1,43 @@
+{%extends "layout.html" %}
+
+<head>
+	{%block head %}
+  <link rel="stylesheet" href="findpatient.css">
+  <link rel="stylesheet" href="static/css/clean-blog.min.css">
+  	{% endblock %}
+</head>
+<body>
+{%block body %}
+	<header class="masthead" style="background-image: 'static/img/icudp.jpg'">
+    <div class="overlay"></div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>ICUlux</h1>
+            <span class="subheading">Find Patient</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="findpatient">
+     <img src="static/img/avatar.png" class="avatar"> 
+     <h1>Find Patient</h1>
+		<form class="form-inline" action="find.php" method="POST">
+			<div class = "form-group">
+				<label class="control-label col-sm-2"  for="pid">Enter Patient ID:</label><br>
+				<input type="text" id="pid" name="pid"><br>
+			</div>
+			<span class="error"><?php echo $piderr;?></span>
+			<div class = "submitbutton">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</form>
+	</div>
+	{% endblock %}
+</body>
+		
+

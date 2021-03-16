@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>{%extends "layout.html" %} {%block body %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('/static/img/icudp.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>ICUlux</h1>
+            <span class="subheading">A ICU Monitoring Application</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Main Content 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              Man must explore, and this is exploration at its greatest
+            </h2>
+            <h3 class="post-subtitle">
+              Problems look mighty small from 150 miles up
+            </h3>
+          </a>
+          
+        <hr> 
+         Pager
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- for login-->
+  <div class="loginbox">
+    <img src="{{url_for('static',filename='img/avatar.png')}}" class="avatar">
+    <h1>Login Here</h1>
+    <form action="/login" method="post">
+      <p>Username</p>
+      <input id="username" type="text" name="username" placeholder="Enter Username">
+      <p>Password</p>
+      <input id="password" type="password" name="password" placeholder="Enter Password">
+      <input type="submit" name="" value="Login" onclick="getInfo()">
+      <a href="#">Lost your password?</a><br>
+      <a href="#">Don't have an account?</a>
+    </form>
+  </div> {% endblock %} <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+</body>
+
+</html>
