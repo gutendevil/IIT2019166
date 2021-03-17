@@ -2,7 +2,8 @@ import time
 
 import flask
 import mysql
-from flask import Flask, render_template, flash, redirect, request, session, abort, jsonify, url_for, Response
+from flask import Flask, render_template, flash, redirect, request, session, abort, jsonify, url_for, Response, \
+     stream_with_context
 from flaskext.mysql import MySQL
 from mysql import connector
 from pyspark.sql import SQLContext, SparkSession
@@ -12,6 +13,9 @@ from pyspark import SparkConf, SparkContext, SparkFiles
 from pyspark.sql.functions import col
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
+from jinja2 import Environment
+from jinja2.loaders import FileSystemLoader
+
 
 import re
 import os
@@ -70,6 +74,13 @@ def find_patient():
 def temp():
      return render_template("data.html", data=patientdata)
 
+def stream_template(template_name, **context):
+    app.update_template_context(context)
+    t = app.jinja_env.get_template(template_name)
+    rv = t.stream(context)
+    #rv.enable_buffering(5)
+    return rv
+
 @app.route('/data', methods=['POST','GET'])
 def data():
      temp()
@@ -92,6 +103,8 @@ def data():
      with open("temp.txt", 'w') as f:
           f.writelines(lines)
 
+
+
      schema = StructType([
           StructField("Name", StringType(), True),
           StructField("val1", StringType(), True),
@@ -106,19 +119,19 @@ def data():
      os.remove("temp.txt")
 
      def inner():
-         # simulate a long process to watch
+          # simulate a long process to watch
           for i in rows:
                name = i[0]
                val1 = i[1]
                val2 = i[2]
                val3 = i[3]
                time.sleep(1)
-              # this value should be inserted into an HTML template
+               # this value should be inserted into an HTML template
                if (val3 != None and val2 != None):
                     yield str(name) + " " + str(val1) + " " + str(val2) + " " + str(val3) + '<br/>\n'
                else:
                     yield str(name) + " " + str(val1) + '<br/>\n'
-
+     rows = inner()
      return Response(inner())
 
 if __name__ == "__main__":

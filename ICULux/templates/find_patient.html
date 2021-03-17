@@ -26,7 +26,7 @@
 
   <div class="findpatient" style=" width: fit-content;
   height: 430px;
-  background: rgb(0, 38, 255);
+  background: rgb(51, 12, 88);
   color: #ffffff;
   top:120%;
   left:50%;
@@ -34,12 +34,12 @@
   transform: translate(-50%,-50%);
   box-sizing: border-box;
   padding: 30px 30px;">
-     
-     <h1>Find Patient</h1>
+<img src="{{url_for('static',filename='img/avatar.png')}}" class="avatar"> 
+     <h1 style="padding: 30px 30px;"">Find Patient</h1>
 		<form class= "form-group" action="{{ url_for('find_patient')}}" method="POST" >
 			<div class = "form-group" style="left: 50%; ">
 				<label class="control-label col-sm-2"  for="pid" style="color:white; ">Enter Patient ID:</label><br>
-				<input type="text" id="pid" name="pid" style="border: black; background:rgb(172, 172, 172, 0.5)"><br>
+				<input type="text" id="pid" name="pid" style="border: rgb(248, 248, 248); background:rgb(172, 172, 172, 0.5)"><br>
 			
 			  <span class="error"><?php echo $piderr;?></span>
 			  <div class = "submitbutton">
