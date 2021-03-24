@@ -121,7 +121,7 @@ def find_current_nature(name, val1, val2=0, val3=0):
         else:
             state = 0
     elif (name == "PAP"):
-        if(val1 != '0' and val3 != '0' and val2 != '0' and val1[0] != '[')
+        if(val1 != '0' and val3 != '0' and val2 != '0' and val1[0] != '['):
             if ((int_or_float(val1) > 25) or (int_or_float(val2) > 40) or (int_or_float(val3) > 18)):
                 flag = True
                 message += "Pulmonary artery Pressure is abnormally high.\n"
