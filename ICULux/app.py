@@ -66,7 +66,7 @@ def update_page(name, val1, val2, val3, cond, message, ntu):
               'msg':message,
               'change':ntu}
      print(data2)
-     return render_template("data.html", data=data, data2=data2)
+     return render_template("data.html", data=patientdata, data2=data2)
 
 
 
