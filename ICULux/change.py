@@ -7,6 +7,23 @@ def int_or_float(s):
     except ValueError:
         return float(s)
 
+dict = {}
+def sum(previous, key):
+    temp = 0;
+    temp1 = 0;
+    temp2 = 0;
+    for i in range(len(dict[key]), len(dict[key]) - 10, -1):
+        if(len(i) == 3):
+            temp += i[0];
+            temp1 += i[1];
+            temp2 += i[2];
+        else:
+            temp += i[0];
+
+    return [temp, temp1, temp2]
+
+
+
 
 def find_current_nature(name, val1, val2=0, val3=0):
     message = ""
@@ -195,3 +212,19 @@ def find_current_nature(name, val1, val2=0, val3=0):
     if(flag == True):
         message += "Patient needs urgent care and medication."
 
+def find_change_nature(name, previous, current, state, flag):
+    message = ""
+    status = 0
+    if(current[0] != '0' && current[0] != '['):
+        if(state == -1):
+            if(sum(previous, name) > int_or_float(current[0])):
+                status = -1
+            elif(sum(previous, name) < int_or_float(current[0])):
+                status = 1
+        elif(state == 1):
+            if (sum(previous, name) > int_or_float(current[0])):
+                status = 1
+            elif (sum(previous, name) < int_or_float(current[0])):
+                status = -1
+
+    return status
