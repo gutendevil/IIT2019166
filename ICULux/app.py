@@ -51,12 +51,15 @@ def int_or_float(s):
         return int(s)
     except ValueError:
         return float(s)
-"""
-def trendline(index, data, order=1):
-     coeffs = numpy.polyfit(index, list(data), order)
+
+def trendline(data, order=1):
+     index = list(range(1, len(data)+1))
+     data = list(map(int, data))
+
+     coeffs = np.polyfit(index, data, order)
      slope = coeffs[-2]
      return float(slope)
-"""
+
 def update_page(name, val1, val2, val3, cond, message, ntu):
      data2 = {'name':name,
               'val1':val1,
@@ -342,7 +345,7 @@ def inner(rows, dict):
 
                update_page(name, val1, val2, val3, condition, message, ntu)
           else:
-               if (len(dict[name]) <= 30):
+               if (len(dict[name]) <= 10):
                     dict[name].append(val1)
                else:
                     dict[name].pop(0)
@@ -356,28 +359,27 @@ def inner(rows, dict):
                     print(templist[0])
                     condition = "Critical"
                     message = templist[0]
-                    """
-                    if((templist[1] > 0) and (trendline(dict[name]) > 0)):
-                         print("Patient's health is depreciating at a high rate")
-                    elif((templist[1] < 0) and (trendline(dict[name]) < 0)):
-                         print("Patient's health is depreciating at a high rate")
+
+                    if((templist[1] > 0) and (trendline(data=dict[name]) > 0)):
+                         ntu = "Depreciating at high rate"
+                    elif((templist[1] < 0) and (trendline(data=dict[name]) < 0)):
+                         ntu = "Depreciating at high rate"
                     else:
-                         print("Needs time to improve")
-                    """
+                         ntu = "recovery would take time"
+
                elif (templist[1] != 0):
                     print("Current Nature: Needs Care")
                     print(templist[0])
                     condition = "Needs Care"
                     message = templist[0]
-                    """
-                    if(len(dict[name]) >= 30):
-                         if ((templist[1] > 0) and (trendline(dict[name]) > 0)):
-                              print("Condition: Degrading")
-                         elif ((templist[1] < 0) and (trendline(dict[name]) < 0)):
-                              print("Condtion: Degrading")
+
+                    if(len(dict[name]) >= 10):
+                         if ((templist[1] > 0) and (trendline(data=dict[name]) > 0)):
+                              ntu = "Degrading"
+                         elif ((templist[1] < 0) and (trendline(data=dict[name]) < 0)):
+                              ntu = "Degrading"
                          else:
-                              print("Condition: Improving")
-                    """
+                              ntu = "Improving"
                else:
                     print("Current Nature: Normal")
                update_page(name, val1, val2, val3, condition, message, ntu)
