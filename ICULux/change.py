@@ -215,7 +215,7 @@ def find_current_nature(name, val1, val2=0, val3=0):
 def find_change_nature(name, previous, current, state, flag):
     message = ""
     status = 0
-    if(current[0] != '0' and current[0] != '['):
+    if(current[0] != '0' && current[0] != '['):
         if(state == -1):
             if(sum(previous, name) > int_or_float(current[0])):
                 status = -1
