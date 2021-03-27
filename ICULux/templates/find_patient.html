@@ -46,6 +46,17 @@
 				  <button type="submit" class="btn btn-default" style="color:white">Submit</button>
 			  </div>
     </div>
+    <div>
+      {% with msg = get_flashed_messages() %}
+  {% if meg %}
+    <ul class="flashes">
+    {% for message in msg %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    </div>
 		</form>
 	</div>
 	{% endblock %}

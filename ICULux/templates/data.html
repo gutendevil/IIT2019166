@@ -16,7 +16,23 @@
       </div>
     </div>
   </header>
-
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+    $(function() {
+      $('a#start').bind('click', function() {
+        $.ajax({
+                 url: "{{ url_for('data_stream') }}",
+                 method: "POST",
+                 data: JSON.stringify("start"),
+                 contentType: 'application/json;charset=UTF-8',
+                 success: function(data) {
+                   console.log(data);
+                 }
+                });
+        return false;
+      });
+    });
+</script>
   <table name="patient_data">
     {% for row in data %}
         <tr>
@@ -45,9 +61,125 @@
         </tr>
     {% endfor %}
   </table>
-  <div>
-    {% for item in rows %}                                                                                                                                                                         
-        {{ item }}                                                                                                                                                                            
-    {% endfor %}
-    </div>
+
+  <form method="POST" action="/">
+    <a href=# id="start"><input type="button" value="start" name="start"/></a> 
+    <input type="button" id="end" value="end" name="end"/> 
+  </form>
+  {% for item in data2 %}
+  <h2>RESP</h2>
+  {% if item.name == "RESP" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>CBP</h2>
+  <h2>ABP</h2>
+  <h2>NBP</h2>
+  <h2>SpO2</h2>
+  {% if item.name == "SpO2" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>HR</h2>
+  {% if item.name == "HR" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>PULSE</h2>
+  {% if item.name == "PULSE" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>CO</h2>
+  {% if item.name == "CO" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>TBlood</h2>
+  <h2>PAP</h2>
+  <h2>LAP</h2>
+  {% if item.name == "LAP" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>CVP</h2>
+  {% if item.name == "CVP" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>EtCO2</h2>
+  {% if item.name == "EtCO2" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>AWRR</h2>
+  {% if item.name == "AWRR" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>PAWP</h2>
+  {% if item.name == "PAWP" %}
+    <h3>Value: </h3>
+    <span>{{item.val1}}</span><br>
+    <h3>Current Nature: </h3>
+    <span>{{item.condition}}</span><br>
+    <span>{{item.msg}}</span><br>
+    <h3>Nature of Change: </h3>
+    <span>{{item.ntu}}</span>
+  {% endif %}
+  <h2>IMCO2</h2>
+  <h2>ART</h2>
+  <h2>ART1</h2>
+  <h2>ST1</h2>
+  <h2>ST2</h2>
+  <h2>ST3</h2>
+  <h2>P4</h2>
+  <h2>UAP</h2>
+  {% endfor %}
+</div>
   {% endblock %}
